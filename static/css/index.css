@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+/*LANDING PAGE STYLING*/
+
+.top-container{
+    position: relative;
+    background-color: var(--headerbackground);
+    padding-top: 100px;
+}
+
+
+.heading{
+    font-size: 5rem;
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+    color: var(--heading);
+    transform: rotate(355deg);
+}
+
+.text{
+    width: max-content;
+    margin: 0 auto;
+    color: black;
+}
+
+.main-image{
+    margin-top: 5%;
+    width: 50%;
+    height: 380px;
+    border-radius: 200px 100px 0 0;
+}
+
+.profile{
+    position: relative;
+    width: 30%;
+    margin: 100px auto 100px auto;
+    text-align: center;
+
+}
+.profile p{
+    font-weight: bold;
+}
+.profile-image{
+    border-radius: 50%;
+    width: 50%;
+}
+
+.skills{
+    position: relative;
+
+}
+.skill-row{
+    position: relative;
+    width: 50%;
+    margin: 100px auto 100px auto;
+    text-align: left;
+    line-height: 2;
+}
+.skill-image{
+    /*border-radius: 50%;*/
+    width: 25%;
+    min-width: 150px !important;
+}
+.skill-image1{
+    float: left;
+    padding-right: 30px;
+}
+.skill-image2{
+    float: right;
+    padding-left: 30px;
+}
+
+.skill-title{
+    font-size: 1.5rem;
+    color: var(--heading);
+}
+
+.contact-me{
+    position: relative;
+    line-height: 2;
+    width: 30%;
+    margin:auto;
+}
+
+.contact-me-heading{
+    padding: 20px 0 20px 0 ;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--heading);
+}
+
+
+.btn-info-custom{
+    background-color: var(--heading);
+    border-color: var(--heading);
+
+    color: #ffffff;
+    padding: 10px 20px 10px 20px;
+}
+.btn-info-custom:hover{
+    background-color: #11cdd4; ;
+
+}
+
+
+
+
+
+
+
+
+
+
