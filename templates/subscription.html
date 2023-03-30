@@ -35,6 +35,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
             </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+            </li>
     </ul>
     </div>
 
@@ -63,34 +66,36 @@
             <button class="btn btn-info btn-lg">Search</button>
         </div>
     </div>
-    <div class="middle-container">
-    <div class="skills">
-        <h2>Search Result</h2>
-        {% for song in songs %}
-{#            <form action="{{ url_for('find_songs') }}">#}
-            <div class="row" style="padding: 40px;background-color: white;border-radius: 50px;margin: 50px 150px;color: black">
-                <div class="col-lg-4 col-md-5"><img src="data:image/jpeg;base64,{{ song['image_data']}}" alt="" style="width: 200px;border-radius: 20px;"></div>
-                <div class="col-lg-5 col-md-4 text-start">
-                    <h3>{{song['title']}}</h3>
-                    <h4>{{song['artist']}}</h4>
-                    <h6>{{song['year']}}</h6>
-                </div>
-                <div class="col-lg-2 col-md-1 d-flex align-items-center">
-                    <button class="btn btn-success">
-                        <i class="fa fa-plus" style="font-size: 4rem;padding: 10px"></i>
-                    </button>
-                </div>
-                <input type="hidden" name="title" value="{{ song['title'] }}">
-                <input type="hidden" name="artist" value="{{ song['artist'] }}">
-                <input type="hidden" name="user_name" value="{{ data }}">
-            </div>
-{#            </form>#}
-
-        {% endfor %}
-    </div>
-
-</div>
-
 </form>
+{#<div class="middle-container">#}
+{#    <div class="skills">#}
+{#        <h2>Search Result</h2>#}
+{#        {% for song in songs %}#}
+{#            <form action="{{ url_for('find_songs',formid=2) }}">#}
+{#            <div class="row" style="padding: 40px;background-color: white;border-radius: 50px;margin: 50px 150px;color: black">#}
+{#                <div class="col-lg-4 col-md-5"><img src="data:image/jpeg;base64,{{ song['image_data']}}" alt="" style="width: 200px;border-radius: 20px;"></div>#}
+{#                <div class="col-lg-5 col-md-4 text-start">#}
+{#                    <h3>{{song['title']}}</h3>#}
+{#                    <h4>{{song['artist']}}</h4>#}
+{#                    <h6>{{song['year']}}</h6>#}
+{#                </div>#}
+{#                <div class="col-lg-2 col-md-1 d-flex align-items-center">#}
+{#                    <button class="btn btn-success">#}
+{#                        <i class="fa fa-plus" style="font-size: 4rem;padding: 10px"></i>#}
+{#                    </button>#}
+{#                </div>#}
+{#                <input type="hidden" name="title" value="{{ song['title'] }}">#}
+{#                <input type="hidden" name="artist" value="{{ song['artist'] }}">#}
+{#                <input type="hidden" name="year" value="{{ song['year'] }}">#}
+{#                <input type="hidden" name="path" value="{{ song['img_url'] }}">#}
+{#                <input type="hidden" name="user_name" value="{{ data }}">#}
+{#            </div>#}
+{#            </form>#}
+{##}
+{#        {% endfor %}#}
+{#    </div>#}
+{#</div>#}
+
+
 </body>
 </html>

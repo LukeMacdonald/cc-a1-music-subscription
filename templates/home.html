@@ -28,6 +28,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('search') }}">Query</a>
+            </li>
     </ul>
     </div>
 
@@ -42,9 +45,9 @@
     <div class="skills">
         <h2>My Subscriptions</h2>
         {% for song in songs %}
-            <form action="{{ url_for('add_subscription') }}" method="POST">
+            <form action="{{ url_for('remove_subscription') }}" method="POST">
             <div class="row" style="padding: 40px;background-color: white;border-radius: 50px;margin: 50px 150px;color: black">
-                <div class="col-lg-4 col-md-5"><img src="{{ song['img_url']}}" alt="" style="width: 200px;border-radius: 20px;"></div>
+               <div class="col-lg-4 col-md-5"><img src="data:image/jpeg;base64,{{ song['image_data']}}" alt="" style="width: 200px;border-radius: 20px;"></div>
                 <div class="col-lg-5 col-md-4 text-start">
                     <h3>{{song['title']}}</h3>
                     <h4>{{song['artist']}}</h4>
@@ -55,9 +58,7 @@
                         <i class="fa fa-trash" style="font-size: 4rem;padding: 10px"></i>
                     </button>
                 </div>
-                <input type="hidden" name="title" value="{{ song['title'] }}">
-                <input type="hidden" name="artist" value="{{ song['artist'] }}">
-                <input type="hidden" name="user_name" value="{{ data }}">
+                <input type="hidden" id = "song" name="song" value="{{ song['song'] }}">
             </div>
             </form>
 
