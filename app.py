@@ -46,6 +46,11 @@ def logout():
     return redirect(url_for('landing'))
 
 
+@app.route('/signup')
+def signup():
+    return render_template('register.html')
+
+
 @app.route('/register', methods=['POST'])
 def register():
     data = {
@@ -90,9 +95,7 @@ def add_subscription():
         'year': request.form.get('year')
     }
 
-
     response = post_request('/subscription', data)['body']
-
 
     return render_template("subscription.html")
 
