@@ -7,8 +7,8 @@ import requests
 app = Flask(__name__)
 
 lambda_client = boto3.client('lambda', region_name='us-east-1')
-url = os.environ.get('API_URL')
-app.secret_key = os.environ.get('SESSION_KEY')
+url = "https://et2jb8ggg8.execute-api.us-east-1.amazonaws.com/dev"
+app.secret_key = "SECRETKEY"
 
 
 @app.route('/', methods=['GET'])
