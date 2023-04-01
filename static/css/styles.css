@@ -13,16 +13,9 @@ body {
 h1, h4 {
   font-family: 'Crimson Text', serif;
 }
-
-.button-custom {
-  margin-top: 20px;
-  width: 60%;
-  border-radius: 20px;
-  height: 50px;
-  background-color: #15b1b6;
-  border-color: #15b1b6;
+.nav-item{
+    padding: 0 30px ;
 }
-
 /* Signin column styles */
 .signin-container {
   min-height: 100vh;
@@ -73,9 +66,17 @@ input {
   border-color: white;
 }
 
+.button-custom {
+  margin-top: 20px;
+  width: 50%;
+  border-radius: 20px;
+  height: 50px;
+  background-color: #FC5185;
+  border-color: #FC5185;
+}
 .button-custom:hover {
-  background-color: #6ba19c;
-  border-color: #6ba19c;
+  background-color: #C06C84;
+  border-color: #C06C84;
   color: white;
 }
 .elements{

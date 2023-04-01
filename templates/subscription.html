@@ -20,30 +20,31 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"></script>
 
     <!--  Custom Stylesheet-->
-    <link href="../static/css/styles.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/shared.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+{#    <link href="../static/css/styles.css" type="text/css" rel="stylesheet">#}
+{#    <link rel="stylesheet" type="text/css" href="../static/css/shared.css">#}
+    <link rel="stylesheet" type="text/css" href="../static/css/index1.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand brand-text" href="">Luke.M</a>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <img src="static/images/logo.png" style="width: 70px; height: 50px;">
+    <a class="navbar-brand brand-text" href="" style="margin-left: 30px">Welcome, {{ session['username'] }}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggle">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-            </li>
-             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('home') }}">Home</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+
     </ul>
     </div>
-
 </nav>
 <form method="post" action="{{ url_for('find_songs') }}">
-    <div class="row justify-content-evenly" style="padding: 0 20px;margin-top: 40px">
+    <div class="row justify-content-center" style="padding: 0 20px;margin-top: 40px">
         <div class="col-lg-4">
             <div class="input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-music"></i></span>
@@ -62,40 +63,12 @@
                     <input class="form-control" id="year" name="year" placeholder="Enter Release Year" value="">
                 </div>
         </div>
-        <div class="col-lg-1">
-            <button class="btn btn-info btn-lg">Search</button>
+
+        <div class="col-10 text-center">
+            <button class="btn button-custom">Search</button>
         </div>
     </div>
+
 </form>
-{#<div class="middle-container">#}
-{#    <div class="skills">#}
-{#        <h2>Search Result</h2>#}
-{#        {% for song in songs %}#}
-{#            <form action="{{ url_for('find_songs',formid=2) }}">#}
-{#            <div class="row" style="padding: 40px;background-color: white;border-radius: 50px;margin: 50px 150px;color: black">#}
-{#                <div class="col-lg-4 col-md-5"><img src="data:image/jpeg;base64,{{ song['image_data']}}" alt="" style="width: 200px;border-radius: 20px;"></div>#}
-{#                <div class="col-lg-5 col-md-4 text-start">#}
-{#                    <h3>{{song['title']}}</h3>#}
-{#                    <h4>{{song['artist']}}</h4>#}
-{#                    <h6>{{song['year']}}</h6>#}
-{#                </div>#}
-{#                <div class="col-lg-2 col-md-1 d-flex align-items-center">#}
-{#                    <button class="btn btn-success">#}
-{#                        <i class="fa fa-plus" style="font-size: 4rem;padding: 10px"></i>#}
-{#                    </button>#}
-{#                </div>#}
-{#                <input type="hidden" name="title" value="{{ song['title'] }}">#}
-{#                <input type="hidden" name="artist" value="{{ song['artist'] }}">#}
-{#                <input type="hidden" name="year" value="{{ song['year'] }}">#}
-{#                <input type="hidden" name="path" value="{{ song['img_url'] }}">#}
-{#                <input type="hidden" name="user_name" value="{{ data }}">#}
-{#            </div>#}
-{#            </form>#}
-{##}
-{#        {% endfor %}#}
-{#    </div>#}
-{#</div>#}
-
-
 </body>
 </html>
