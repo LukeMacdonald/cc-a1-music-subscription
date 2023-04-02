@@ -9,3 +9,6 @@ $('#register').hover(function() {
     $('.music').toggleClass('elements');
 
 })
+function goBack() {
+  window.history.back();
+}

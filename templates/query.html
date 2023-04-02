@@ -1,47 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-     <!--  Bootstrap Stylesheet-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-          rel="stylesheet" crossorigin="anonymous"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD">
-
-    <!--  Font Awesome-->
-    <script src="https://kit.fontawesome.com/b6adf447e0.js" crossorigin="anonymous"></script>
-
-    <!--  Bootstrap Scripts-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"
-            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" crossorigin="anonymous"
-            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"></script>
-
-    <!--  Custom Stylesheet-->
-    <link rel="stylesheet" type="text/css" href="../static/css/index1.css">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <img src="/static/images/logo.png" style="width: 70px; height: 50px;">
-    <a class="navbar-brand brand-text" href="" style="margin-left: 30px">Welcome, {{ session['username'] }}</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarToggle">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-            </li>
-
-    </ul>
-    </div>
-</nav>
-<button class="btn btn-danger" style="margin: 20px 0 0 20px" onclick="goBack()"><i class="fa-solid fa-reply" style="margin-right: 10px"></i>Back</button>
+{% extends 'base.html' %}
+{% block content %}
+<button class="btn btn-danger" style="margin: 120px 0 0 20px" onclick="goBack()"><i class="fa-solid fa-reply" style="margin: 10px"></i>Back</button>
 <div class="middle-container">
     <div class="skills">
         <div class="subscriptions row justify-content-center">
@@ -72,12 +31,4 @@
         </div>
     </div>
 </div>
-
-
-</body>
-<script>
-function goBack() {
-  window.history.back();
-}
-</script>
-</html>
+{% endblock %}
