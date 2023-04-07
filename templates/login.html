@@ -22,7 +22,8 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"></script>
 
     <!--  Custom Stylesheet-->
-    <link href="../static/css/styles.css" type="text/css" rel="stylesheet">
+
+    <link href=" {{ url_for('static', filename='css/styles.css') }}" type="text/css" rel="stylesheet">
 
 </head>
 
@@ -31,12 +32,12 @@
 <div class="row">
     <div class="register-container container-fluid col-lg-5 text-center" >
         <div class="register-content" id="register">
-            <img src="../static/images/music.png" width="40px" style="position: absolute" class=" music" alt="">
-            <img src="../static/images/music2.png" width="40px" style="position: absolute;left:200px;top: 70px" class=" music">
-            <img src="../static/images/music.png" width="40px" style="position: absolute;left:500px;top: 150px" class=" music">
-            <img src="../static/images/music.png" width="40px" style="position: absolute;left:400px;top: 100px" class=" music">
-            <img src="../static/images/music2.png" width="40px" style="position: absolute;top: 170px" class=" music">
-            <img src="../static/images/5828.png" width="75%" alt="">
+            <img src="{{ url_for('static', filename='images/music.png')}}" width="40px" style="position: absolute" class=" music" alt="">
+            <img src="{{ url_for('static', filename='images/music2.png')}}" width="40px" style="position: absolute;left:200px;top: 70px" class=" music">
+            <img src="{{ url_for('static', filename='images/music.png')}}" width="40px" style="position: absolute;left:500px;top: 150px" class=" music">
+            <img src="{{ url_for('static', filename='images/music.png')}}" width="40px" style="position: absolute;left:400px;top: 100px" class=" music">
+            <img src="{{ url_for('static', filename='images/music2.png')}}" width="40px" style="position: absolute;top: 170px" class=" music">
+            <img src="{{url_for('static',filename='images/5828.png')}}" width="75%" alt="">
             <h1 style="margin-top: 70px">Do Not Have an Account?</h1>
             <h4>Sign Up Here</h4>
             <a href="{{ url_for('signup') }}">
@@ -70,6 +71,6 @@
 </body>
 <footer>
     <!--    Custom Javascript -->
-    <script src="../static/javascript/index.js" charset="utf-8"></script>
+    <script src="{{ url_for('static', filename='js/index.js')}}" charset="utf-8"></script>
 </footer>
 </html>

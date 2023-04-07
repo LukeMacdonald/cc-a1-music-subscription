@@ -1,14 +1,12 @@
+import json
 import os
 from flask import Flask, session, render_template, request, redirect, url_for
-import json
-import boto3
-import requests
+from httpclient import client
 
 app = Flask(__name__)
-
-lambda_client = boto3.client('lambda', region_name='us-east-1')
-url = os.environ.get('API_URL')
 app.secret_key = os.environ.get('SESSION_KEY')
+
+user_subscriptions = []
 
 
 @app.route('/', methods=['GET'])
@@ -26,7 +24,7 @@ def login():
         if not email or not password:
             raise Exception('Email and Password Required')
 
-        response = get_request('/login', {'email': email, 'password': password})
+        response = client.get('/login', {'email': email, 'password': password})
 
         if response['status_code'] == 200:
 
@@ -42,6 +40,7 @@ def login():
 
 @app.route('/logout')
 def logout():
+    user_subscriptions.clear()
     session.pop('username', None)
     return redirect(url_for('landing'))
 
@@ -58,8 +57,7 @@ def register():
         'email': request.form.get('email'),
         'password': request.form.get('password')
     }
-
-    response = post_request('/login', data)
+    response = client.post(path='/login', json=data)
 
     if response['status_code'] == 200:
         session['username'] = request.form.get('username')
@@ -76,7 +74,16 @@ def find_songs():
         'year': request.form.get('year')
     }
 
-    response = get_request('/music/query', data)['body']
+    response = client.get(path='/music/query', params=data)['body']
+
+    for sub in response:
+        sub['subscribed'] = False
+        song = sub['title'] + '###' + sub['artist']
+        for subs in user_subscriptions:
+            print(subs)
+            if song in subs.values():
+                sub['subscribed'] = True
+                print(song)
     return render_template("query.html", songs=response)
 
 
@@ -95,7 +102,9 @@ def add_subscription():
         'year': request.form.get('year')
     }
 
-    response = post_request('/subscription', data)['body']
+    response = client.post(path='/subscription', json=data)['body']
+    data['song'] = data['title'] + '###' + data['artist']
+    user_subscriptions.append(data)
 
     return render_template("subscription.html")
 
@@ -104,9 +113,9 @@ def add_subscription():
 def remove_subscription():
     data = {
         'username': session['username'],
-        'song': request.form.get('song'),
+        'song': request.form.get('title') + "###" + request.form.get('artist'),
     }
-    response = delete_request('/subscription', data)
+    response = client.delete(path='/subscription', params=data)
     return load_home()
 
 
@@ -117,41 +126,15 @@ def home():
 
 def load_home():
     data = {'username': session['username']}
+    response = client.get(path='/music', params=data)['body']
+    user_subscriptions.clear()
 
-    response = get_request('/music', data)['body']
-    print(response)
+    user_subscriptions.extend(response['Items'])
 
     return render_template('home.html',
                            data=session['username'],
-                           songs=response['Items'],
+                           songs=user_subscriptions,
                            )
-
-
-def get_request(resource, params):
-    response = requests.get(
-        url=url + resource,
-        headers={'Content-Type': 'application/json'},
-        params=params
-    )
-    return {'status_code': response.status_code, 'body': response.json()}
-
-
-def delete_request(resource, params):
-    response = requests.delete(
-        url=url + resource,
-        headers={'Content-Type': 'application/json'},
-        params=params
-    )
-    return {'status_code': response.status_code, 'body': response.json()}
-
-
-def post_request(resource, data):
-    response = requests.post(
-        url=url + resource,
-        headers={'Content-Type': 'application/json'},
-        data=json.dumps(data)
-    )
-    return {'status_code': response.status_code, 'body': response.json()}
 
 
 if __name__ == '__main__':
