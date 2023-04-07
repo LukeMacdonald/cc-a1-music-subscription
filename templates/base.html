@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light">
     <img src="{{ url_for('static',filename='images/logo.png') }}" style="width: 70px; height: 50px;">
     <a class="navbar-brand brand-text" href="" style="margin-left: 30px">Welcome, {{ session['username'] }}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
                 <a class="nav-link" href="{{ url_for('home') }}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('search') }}">Music</a>
+                <a class="nav-link" href="{{ url_for('search') }}">Search</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>

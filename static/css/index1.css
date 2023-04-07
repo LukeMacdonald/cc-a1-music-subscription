@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap');
 body{
-    background-color: #393E46;
+    /*background-color: #393E46;*/
     font-family: 'Montserrat', sans-serif;
-    color: white;
 }
 hr{
-    border: dotted #FFFFFF 6px;
+    border: dotted #000000 6px;
     border-bottom: none;
     width: 60%;
     margin: 20px auto;
@@ -31,11 +30,13 @@ hr{
 }
 .subscriptions-heading{
     padding-top: 50px;
-    color: white;
 }
 .subscriptions{
     width: 90%;
     margin: 60px auto;
+    background-color: #EEEEEE;
+    padding: 20px;
+    border-radius: 10px
 }
 .subscriptions-item{
     margin: 20px;
@@ -59,11 +60,17 @@ hr{
     min-width: max-content;
     border-radius: 20px;
     height: 50px;
-    background-color: #FC5185;
-    border-color: #FC5185;
+    background-color: #00ADB5;
+    border-color: #00ADB5;
 }
 .button-custom:hover {
-  background-color: #C06C84;
-  border-color: #C06C84;
+  background-color: #008a90;
+  border-color: #008a90;
   color: white;
+}
+.search-box{
+    padding: 20px 20px;
+    margin: 200px 40px 0 40px;
+    background-color: #EEEEEE;
+    border-radius: 10px
 }
