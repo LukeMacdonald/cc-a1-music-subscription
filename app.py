@@ -1,4 +1,3 @@
-import json
 import os
 from flask import Flask, session, render_template, request, redirect, url_for
 from httpclient import client
@@ -12,7 +11,7 @@ user_subscriptions = []
 @app.route('/', methods=['GET'])
 def landing():
     if 'username' in session:
-        return load_home()
+        return redirect(url_for('home'))
     return render_template("login.html")
 
 
@@ -29,7 +28,7 @@ def login():
         if response['status_code'] == 200:
 
             session['username'] = response['body']['user_name']
-            return load_home()
+            return redirect(url_for('home'))
         else:
             raise Exception(response['body'])
 
@@ -50,41 +49,46 @@ def signup():
     return render_template('register.html')
 
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['POST', 'GET'])
 def register():
-    data = {
-        'username': request.form.get('username'),
-        'email': request.form.get('email'),
-        'password': request.form.get('password')
-    }
-    response = client.post(path='/login', json=data)
+    try:
+        data = {
+            'username': request.form.get('username'),
+            'email': request.form.get('email'),
+            'password': request.form.get('password')
+        }
+        response = client.post(path='/login', json=data)
 
-    if response['status_code'] == 200:
-        session['username'] = request.form.get('username')
-        return load_home()
-    else:
-        return render_template('register.html', error_message=response['body'])
+        if response['status_code'] == 200:
+            session['username'] = request.form.get('username')
+            return redirect(url_for('home'))
+        else:
+            return render_template('register.html', error_message=response['body'])
+    except Exception as e:
+        return redirect(url_for("signup"))
 
 
 @app.route('/songs/search', methods=['POST', 'GET'])
 def find_songs():
-    data = {
-        'artist': request.form.get('artist'),
-        'title': request.form.get('title'),
-        'year': request.form.get('year')
-    }
+    try:
+        data = {
+            'artist': request.form.get('artist'),
+            'title': request.form.get('title'),
+            'year': request.form.get('year')
+        }
+        response = client.get(path='/music/query', params=data)['body']
+        for sub in response:
+            sub['subscribed'] = False
+            new_song = sub['title'] + '###' + sub['artist']
 
-    response = client.get(path='/music/query', params=data)['body']
-
-    for sub in response:
-        sub['subscribed'] = False
-        song = sub['title'] + '###' + sub['artist']
-        for subs in user_subscriptions:
-            print(subs)
-            if song in subs.values():
-                sub['subscribed'] = True
-                print(song)
-    return render_template("query.html", songs=response)
+            if len(user_subscriptions) > 0:
+                for subs in user_subscriptions:
+                    if new_song in subs.values():
+                        sub['subscribed'] = True
+        return render_template("query.html", songs=response)
+    except Exception as e:
+        print(e)
+        return render_template("query.html", songs=[])
 
 
 @app.route('/songs', methods=['GET'])
@@ -103,6 +107,7 @@ def add_subscription():
     }
 
     response = client.post(path='/subscription', json=data)['body']
+
     data['song'] = data['title'] + '###' + data['artist']
     user_subscriptions.append(data)
 
@@ -116,15 +121,11 @@ def remove_subscription():
         'song': request.form.get('title') + "###" + request.form.get('artist'),
     }
     response = client.delete(path='/subscription', params=data)
-    return load_home()
+    return redirect(url_for('home'))
 
 
 @app.route('/home')
 def home():
-    return load_home()
-
-
-def load_home():
     data = {'username': session['username']}
     response = client.get(path='/music', params=data)['body']
     user_subscriptions.clear()

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<button class="btn btn-danger" style="margin: 120px 0 0 20px" onclick="goBack()"><i class="fa-solid fa-reply" style="margin: 10px"></i>Back</button>
+<button class="btn btn-dark" style="margin: 120px 0 0 20px" onclick="goBack()"><i class="fa-solid fa-reply" style="margin: 10px"></i></button>
 <div class="middle-container">
     <div class="skills">
         <div class="subscriptions row justify-content-center">
@@ -12,17 +12,17 @@
                 {% endif %}
             </div>
             {% for song in songs %}
-                <div class="subscriptions-item col-lg-3 col-md-6">
+                <div class="subscriptions-item col-lg-3 col-md-6 text-center">
                     <form action="{{ url_for('add_subscription') }}" method="post">
                         <img class="subscriptions-image" src="data:image/jpeg;base64,{{ song['image_data']}}" alt="">
                         <div class="subscription-details">
-                            <h4>{{song['title']}}</h4>
-                            <h5>{{song['artist']}}</h5>
-                            <h6>{{song['year']}}</h6>
-                            {% if not song['subscribed'] %}
-                                <button class="btn button-custom">Add</button>
-                            {% endif %}
+                            <h5>{{song['title']}}</h5>
+                            <h6>{{song['artist']}}</h6>
+                            <p>{{song['year']}}</p>
                         </div>
+                        {% if not song['subscribed'] %}
+                                <button class="btn button-custom">Subscribe</button>
+                        {% endif %}
                         <input type="hidden" name="title" value="{{ song['title'] }}">
                         <input type="hidden" name="artist" value="{{ song['artist'] }}">
                         <input type="hidden" name="year" value="{{ song['year'] }}">

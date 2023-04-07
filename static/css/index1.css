@@ -50,15 +50,17 @@ hr{
     border-radius: 15px;
 }
 .subscription-details{
-    margin-left: 20px;
+    margin: 10px 0 0 0;
+    height: 100px;
 }
 .button-custom {
-  margin-top: 20px;
-  width: 50%;
-  border-radius: 20px;
-  height: 50px;
-  background-color: #FC5185;
-  border-color: #FC5185;
+    margin-top: 20px;
+    width: 50%;
+    min-width: max-content;
+    border-radius: 20px;
+    height: 50px;
+    background-color: #FC5185;
+    border-color: #FC5185;
 }
 .button-custom:hover {
   background-color: #C06C84;

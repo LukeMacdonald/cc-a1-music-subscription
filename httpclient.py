@@ -5,7 +5,7 @@ import requests
 class HTTPClient:
     def __init__(self):
         self.base_url = os.environ.get('API_URL')
-        self.headers = {'Content-Type': 'application/json'}
+        self.headers = {'Content-Type': 'application/json', 'x-api-key': os.environ.get('API_KEY')}
 
     def get(self, path, params):
         url = self.base_url + path
